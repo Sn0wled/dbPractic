@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="styles/table.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <h1>Учебные места</h1>
+            <div class="class-selector">
+                <span>Класс</span>
+                <select>
+                </select>
+            </div>
+            <hr/>
+            <table class="place-table table">
+                <thead>
+                    <tr>
+                        <th>№ места</th>
+                        <th>Имя станции</th>
+                        <th>IP-адрес</th>
+                        <th hidden>Примечание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <hr/>
+            <p class="note">
+                Примечание
+            </p>
+            <hr/>
+            <h2>Оборудование</h2>
+            <hr/>
+            <table class="eq-table table">
+                <thead>
+                    <tr>
+                        <th>Инв. номер</th>
+                        <th>Тип</th>
+                        <th>Характеристика</th>
+                        <th>Испр.</th>
+                        <th hidden>Примечание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <hr/>
+        </div>
+        <div class="buttons">
+            <button class="addButton">Добавить место</button>
+            <button class="editButton">Изменить место</button>
+            <button class="delButton">Удалить место</button>
+        </div>
+        <hr/>
+        <a href="../index.html">Вернуться назад</a>
+        <script src="scripts/places.js"></script>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../styles/table.css">
+</head>
+<body>
+    <div>
+        <div class="selector">
+            <select id="class-select">
+                <option th:each="class : ${classes}" th:text="${class.address}" th:value="${class.id}"></option>
+            </select>
+            <select id="place-select">
+
+            </select>
+        </div>
+    </div>
+    <hr>
+    <div id="serv-table-wrapper">
+        <table id="serv-table">
+            <thead>
+                <tr>
+                    <th>Дата устан.</th>
+                    <th>Дата снят.</th>
+                    <th>Инв. ном.</th>
+                    <th>Тип</th>
+                    <th>Характеристика</th>
+                    <th>Испр.</th>
+                </tr>
+            </thead>
+            <tbody id="serv-table-tbody"></tbody>
+        </table>
+        <div>
+            <h3>Примечание</h3>
+            <p id="serv-note"></p>
+        </div>
+    </div>
+    <script src="../js/servJs.js"></script>
+</body>
+</html>

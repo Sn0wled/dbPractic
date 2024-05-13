@@ -1,0 +1,6 @@
+<tr th:each="place:${places}" th:id="${place.id}">
+    <td th:text="${place.num}"></td>
+    <td th:text="${place.name}"></td>
+    <td th:text="${place.ip}"></td>
+    <td th:text="${place.note}" hidden></td>
+</tr>

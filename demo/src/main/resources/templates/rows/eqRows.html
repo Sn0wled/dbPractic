@@ -1,0 +1,7 @@
+<tr th:each="equip: ${equipments}" th:id="${equip.id}" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="rows">
+    <td th:text="${equip.invNum}"></td>
+    <td th:text="${equip.type}"></td>
+    <td th:text="${equip.characteristic}"></td>
+    <td th:text="${equip.isOk==1?'да':'нет'}"></td>
+    <td th:text="${equip.classAndPlace}" th:hidden="${hideClassAndPlace} ?: true"></td>
+</tr>

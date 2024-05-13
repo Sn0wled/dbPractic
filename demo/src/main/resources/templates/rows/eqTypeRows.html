@@ -1,0 +1,5 @@
+<tr th:each="eqType:${eqTypes}" th:id="${eqType.id}">
+    <td th:text="${eqType.category}"></td>
+    <td th:text="${eqType.name}"></td>
+    <td class="char" hidden th:text="${eqType.characteristic}"></td>
+</tr>

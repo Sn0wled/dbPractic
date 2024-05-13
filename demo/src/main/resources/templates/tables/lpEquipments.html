@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Оборудование учебного места</title>
+    <link type="text/css" rel="stylesheet" href="../styles/table.css">
+</head>
+<body>
+    <h1>Оборудование учебного места</h1>
+    <div class="selector">
+        <select id="class-select">
+            <option th:each="class : ${classes}" th:text="${class.address}" th:value="${class.id}"></option>
+        </select>
+        <select id="place-select">
+
+        </select>
+        <hr>
+        <div class="ws-name">
+            <span>Имя рабочей станции: </span>
+            <span id="ws-name-value"></span>
+        </div>
+        <div class="ip">
+            <span>IP-адрес: </span>
+            <span id="ip-value"></span>
+        </div>
+    </div>
+    <hr>
+    <table id="eq-table">
+        <thead>
+            <tr>
+                <td>Инв. №</td>
+                <td>Тип</td>
+                <td>Характеристика</td>
+                <td>Испр.?</td>
+            </tr>
+        </thead>
+        <tbody id="place-tbody"></tbody>
+    </table>
+    <hr>
+<div class="buttons">
+    <div id="control-buttons">
+        <button id="install-button" disabled>Установить</button>
+        <button id="uninstall-button" disabled>Снять</button>
+        <button id="change-is-ok" disabled>Испр./Неиспр.</button>
+    </div>
+    <div id="nav-buttons">
+        <button disabled id="toJournal">Журнал обслуживания</button>
+    </div>
+</div>
+<script src="../js/lp-eq.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<tr th:each=" serv:${servs}" th:id="${serv.id}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <td th:text="${#dates.format(serv.installDate, 'dd.MM.yyyy')}"></td>
+    <td th:text="${#dates.format(serv.uninstallDate, 'dd.MM.yyyy')}"></td>
+    <td th:text="${serv.invNum}"></td>
+    <td th:text="${serv.type}"></td>
+    <td th:text="${serv.characteristic}"></td>
+    <td th:text="${serv.isOk==1?'да':'нет'}"></td>
+    <td hidden th:text="${serv.note}"></td>
+</tr>

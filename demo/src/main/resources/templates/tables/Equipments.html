@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../styles/table.css">
+</head>
+<body>
+<h1>Таблица "Оборудование"</h1>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Инвентарный номер</th>
+                    <th>Тип оборудования</th>
+                    <th>Примечание</th>
+                    <th>Исправен</th>
+                    <th>Класс / место</th>
+                </tr>
+            </thead>
+            <tbody class="eqtbody" th:insert="~{eqRows}">
+            </tbody>
+        </table>
+        <div class="note">
+            <p></p>
+        </div>
+        <div class="buttons">
+            <button class="deleteButton">Снять с учета</button>
+        </div>
+    </div>
+    <a href="../index.html">Вернуться на главную</a>
+</body>
+</html>
