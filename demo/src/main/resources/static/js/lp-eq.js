@@ -83,7 +83,7 @@ function selectEq(row){ // row может быть null
 }
 
 function onEqSelect(){
-    checkButtons()
+    checkEqButtons()
 }
 
 function checkEqButtons(){

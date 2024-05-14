@@ -52,4 +52,8 @@ public class EqService {
         }
         return  result;
     }
+
+    public void del(int id){
+        eqDao.delete(id);
+    }
 }

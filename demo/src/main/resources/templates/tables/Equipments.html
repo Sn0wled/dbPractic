@@ -8,7 +8,7 @@
 <body>
 <h1>Оборудование</h1>
     <div>
-        <table class="table">
+        <table id="eq-table">
             <thead>
                 <tr>
                     <th>Инвентарный номер</th>
@@ -18,16 +18,17 @@
                     <th>Класс / место</th>
                 </tr>
             </thead>
-            <tbody class="eqtbody" th:insert="~{rows/eqRows}">
+            <tbody id="eq-tbody" th:insert="~{rows/eqRows}">
             </tbody>
         </table>
         <div class="note">
-            <p></p>
+            <p id="eq-note"></p>
         </div>
         <div class="buttons">
-            <button class="deleteButton">Снять с учета</button>
+            <button id="delete-button">Снять с учета</button>
         </div>
     </div>
     <a href="/">Вернуться на главную</a>
+    <script src="js/eq.js"></script>
 </body>
 </html>

@@ -20,4 +20,7 @@ public class EqDao {
     public List<Eq> getAll(){
         return jdbcTemplate.query("select * from get_all_eq()", rowMapper);
     }
+    public void delete(int eqId){
+        jdbcTemplate.update("call del_eq(?)", eqId);
+    }
 }

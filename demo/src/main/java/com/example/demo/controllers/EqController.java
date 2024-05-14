@@ -9,8 +9,10 @@ import com.example.demo.services.EqService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +21,6 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/eq")
 public class EqController {
-    @Autowired
-    EqDao eqDao;
-    @Autowired
-    EqTypeDao eqTypeDao;
     @Autowired
     ClassService classService;
     @Autowired
@@ -44,5 +42,10 @@ public class EqController {
     public String getLpEq(Model model){
         model.addAttribute("classes", classService.getAll());
         return "tables/lpEquipments.html";
+    }
+    @DeleteMapping()
+    @ResponseBody
+    public void delEq(int eqId){
+        eqService.del(eqId);
     }
 }
