@@ -2,6 +2,9 @@ const classSelect = document.getElementById('class-select')
 const placeSelect = document.getElementById('place-select')
 const servTBody = document.getElementById('serv-table-tbody')
 const noteP = document.getElementById('serv-note')
+const urlParams = new URLSearchParams(document.location.search)
+const searchClassId = urlParams.get('classId')
+const searchPlaceId = urlParams.get('placeId')
 
 let selectedServRow = null
 classSelect.onchange = loadPlaces
@@ -14,7 +17,7 @@ function loadPlaces() {
         placeSelect.innerHTML = ""
         return
     }
-    fetch('/place/opts/by-class?classId='+classSelect.value)
+    fetch('/place/opts/by-class?classId='+classSelect.value+'&placeId='+searchPlaceId)
     .then(r => r.text())
     .then(text => placeSelect.innerHTML = text)
     .then(onPlaceSelect)

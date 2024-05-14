@@ -23,8 +23,9 @@ public class PlaceController {
     }
 
     @GetMapping("/opts/by-class")
-    public String getOptsByClassId(int classId, Model model) {
+    public String getOptsByClassId(Integer placeId, int classId, Model model) {
         model.addAttribute("places", placeDao.getByClassId(classId));
+        model.addAttribute("placeId", placeId);
         return "opts/placeOpts.html";
     }
 

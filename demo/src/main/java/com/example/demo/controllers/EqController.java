@@ -32,7 +32,7 @@ public class EqController {
         model.addAttribute("equipments", eqService.getByPlaceId(placeId));
         return "rows/eqRows.html";
     }
-    @GetMapping("")
+    @GetMapping()
     public String getAll(Model model){
         List<EqDto> result = eqService.getAll();
         model.addAttribute("equipments", result);

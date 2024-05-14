@@ -15,6 +15,10 @@ public class ClassService {
         return classDao.getAll();
     }
 
+    public List<Integer> getCafs(){
+        return classDao.getCafs();
+    }
+
     public Class getById(int id){
         return classDao.getById(id);
     }

@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Оборудование</title>
     <link rel="stylesheet" href="../styles/table.css">
 </head>
 <body>
-<h1>Таблица "Оборудование"</h1>
+<h1>Оборудование</h1>
     <div>
         <table class="table">
             <thead>
@@ -18,7 +18,7 @@
                     <th>Класс / место</th>
                 </tr>
             </thead>
-            <tbody class="eqtbody" th:insert="~{eqRows}">
+            <tbody class="eqtbody" th:insert="~{rows/eqRows}">
             </tbody>
         </table>
         <div class="note">
@@ -28,6 +28,6 @@
             <button class="deleteButton">Снять с учета</button>
         </div>
     </div>
-    <a href="../index.html">Вернуться на главную</a>
+    <a href="/">Вернуться на главную</a>
 </body>
 </html>

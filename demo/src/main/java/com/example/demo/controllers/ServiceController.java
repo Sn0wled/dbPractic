@@ -17,8 +17,9 @@ public class ServiceController {
     ClassService classService;
 
     @GetMapping()
-    public String journal(Model model){
+    public String journal(Integer classId, Model model){
         model.addAttribute("classes", classService.getAll());
+        model.addAttribute("classId", classId);
         return "tables/serv.html";
     }
 

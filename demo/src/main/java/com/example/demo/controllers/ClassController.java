@@ -23,26 +23,26 @@ public class ClassController {
     public String getByCafid(int cafId, Model model){
         List<Class> classes = classDao.getByCafId((cafId));
         model.addAttribute("classes", classes);
-        return "classRows.html";
+        return "rows/classRows.html";
     }
 
     @GetMapping("/cafs")
     public String getCafs(Model model){
         model.addAttribute("cafs", classDao.getCafs());
-        return "cafsOpts.html";
+        return "opts/cafsOpts.html";
     }
 
     @GetMapping("/addresses")
     public String getAddresses(Model model){
         List<Class> classes = classDao.getAll();
         model.addAttribute("classes", classes);
-        return  "classOpts.html";
+        return  "opts/classOpts.html";
     }
 
     @GetMapping()
-    public  String getAll(Model model){
-        model.addAttribute("classes", classService.getAll());
-        return "classRows.html";
+    public  String classes(Model model){
+        model.addAttribute("cafs", classService.getCafs());
+        return "tables/classes.html";
     }
     @ResponseBody
     @GetMapping("/asd")

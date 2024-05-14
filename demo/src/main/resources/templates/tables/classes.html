@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Оборудование учебного места</title>
+        <link type="text/css" rel="stylesheet" href="../styles/table.css">
+    </head>
+    <body>
+        <div class="seletor">
+            <label>Отв. кафедра</label>
+            <select id="caf-select" th:insert="~{opts/cafsOpts.html}"></select>
+        </div>
+        <hr/>
+        <table>
+            <thead>
+                <tr>
+                    <th>Адрес</th>
+                    <th>Телефон</th>
+                    <th>Макс. мест</th>
+                    <th>Факт. мест</th>
+                </tr>
+            </thead>
+            <tbody id="class-table"></tbody>
+        </table>
+        <hr/>
+        <h3>Примечание</h3>
+        <p id="class-note">
+        </p>
+        <hr/>
+        <div class="buttons">
+            <button id="add-button">Добавить</button>
+            <button id="edit-button">Изменить</button>
+            <button id="to-places-button">Места</button>
+        </div>
+        <hr/>
+        <a href="/">Вернуться на главную</a>
+    <script src="js/classes.js"></script>
+    </body>
+</html>

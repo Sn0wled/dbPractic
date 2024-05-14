@@ -3,11 +3,16 @@ const placeSelect = document.getElementById('place-select')
 const wsNameValue = document.getElementById('ws-name-value')
 const ipValue = document.getElementById('ip-value')
 const placeTBody = document.getElementById('place-tbody')
+const installButton = document.getElementById('install-button')
+const uninstallButton = document.getElementById('uninstall-button')
+const changeOkButton = document.getElementById('change-is-ok')
+const toJournalButton = document.getElementById('toJournal')
 
 
 let selectedEqRow = null
 classSelect.onchange = loadPlaces
 placeSelect.onchange = onPlaceSelect
+toJournalButton.onclick=onClickToJournal
 
 onPageLoad()
 
@@ -46,7 +51,9 @@ function fillPlaceTable(){
     .then(text => placeTBody.innerHTML=text)
     .then(() => {
         for (let row of placeTBody.children){
-            row.onclick = () => selectEq(row)
+            row.onclick = () => {
+                selectEq(row)
+            }
         }
     })
 }
@@ -58,16 +65,46 @@ function onPageLoad(){
 function onPlaceSelect(){
     fillPlaceChars()
     fillPlaceTable()
-    selectedEqRow = null
+    selectEq(null)
+    checkPlaceButton()
 }
 
-function selectEq(row){
+function selectEq(row){ // row может быть null
     if (selectedEqRow === row){
+        if (selectedEqRow == null) return
         selectedEqRow.classList.remove('selected')
         selectedEqRow = null
     } else {
         if (selectedEqRow != null) selectedEqRow.classList.remove('selected')
         selectedEqRow = row
-        row.classList.add('selected')
+        if (row != null) row.classList.add('selected')
     }
+    onEqSelect()
+}
+
+function onEqSelect(){
+    checkButtons()
+}
+
+function checkEqButtons(){
+    if (selectedEqRow == null){
+        uninstallButton.disabled = true
+        changeOkButton.disabled = true
+    } else {
+        uninstallButton.disabled = false
+        changeOkButton.disabled = false
+    }
+}
+
+function checkPlaceButton(){
+    if (placeSelect.value == "") {
+        toJournalButton.disabled = true
+    } else {
+        toJournalButton.disabled = false
+    }
+}
+
+function onClickToJournal(){
+    if (classSelect.value == '' || placeSelect.value == '') return
+    document.location.href = '/serv?classId='+classSelect.value+'&placeId='+placeSelect.value
 }
