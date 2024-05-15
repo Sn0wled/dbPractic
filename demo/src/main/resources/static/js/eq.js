@@ -11,6 +11,9 @@ deleteButton.onclick = () => {
     .then(r => location.reload())
 }
 
+addButton.onclick = () => {
+    location.assign('/eq/editor')
+}
 
 
 function selectEqRow(row){
@@ -45,7 +48,7 @@ function onRowClick(row){
 function init(){
     for (let row of eqTBody.children){
         row.onclick=() => onRowClick(row)
-        if (row.classList.contains('selected')) selectedEq = row;
+        if (row.classList.contains('selected')) selectEqRow(row);
     }
     checkEqButtons()
 }

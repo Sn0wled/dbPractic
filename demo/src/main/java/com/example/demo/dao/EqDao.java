@@ -26,4 +26,7 @@ public class EqDao {
     public Integer create(int typeId, int invNum, String note) {
         return jdbcTemplate.queryForObject("select add_eq(?, ?, ?)", Integer.class, typeId, invNum, note);
     }
+    public Eq getById(int id){
+        return jdbcTemplate.queryForObject("select * from get_eq_by_id(?)", rowMapper, id);
+    }
 }

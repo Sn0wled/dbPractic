@@ -6,6 +6,8 @@ const saveButton = document.getElementById('save-button')
 const cancelButton = document.getElementById('cancel-button')
 const editForm = document.getElementById('add-eq-form')
 const typeId = document.getElementById('type-id')
+const urlParams = new URLSearchParams(document.location.search)
+const eqId = urlParams.get('eqId')
 
 let selectedTypeRow= null
 

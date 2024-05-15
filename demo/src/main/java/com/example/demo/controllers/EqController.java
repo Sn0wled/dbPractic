@@ -32,10 +32,11 @@ public class EqController {
         return "rows/eqRows.html";
     }
     @GetMapping()
-    public String getAll(Model model){
+    public String getAll(Model model, Integer eqId){
         List<EqDto> result = eqService.getAll();
         model.addAttribute("equipments", result);
         model.addAttribute("hideClassAndPlace", false);
+        model.addAttribute("eqId", eqId);
         return "tables/Equipments.html";
     }
 
@@ -52,20 +53,21 @@ public class EqController {
         return "editors/eqEditor.html";
     }
 
-    @GetMapping("/test")
-    public ModelAndView testRedirect(ModelMap model){
-        model.addAttribute("eqId", 9);
-        return new ModelAndView("redirect:/eq/editor", model);
-    }
-
     @DeleteMapping()
+    @ResponseBody
     public void delEq(int eqId){
         eqService.del(eqId);
+    }
+
+    @ResponseBody
+    @GetMapping("/by-id")
+    public Eq getById(int id){
+        return eqService.getById(id);
     }
 
     @PostMapping("/editor")
     public ModelAndView addEq(ModelMap model, int typeId, int invNum, String note){
         model.addAttribute("eqId", eqService.create(typeId, invNum, note));
-        return new ModelAndView("redirect: ", model);
+        return new ModelAndView("redirect:/eq", model);
     }
 }

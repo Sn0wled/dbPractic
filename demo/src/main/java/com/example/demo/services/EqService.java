@@ -60,4 +60,8 @@ public class EqService {
     public void del(int id){
         eqDao.delete(id);
     }
+
+    public Eq getById(int id){
+        return eqDao.getById(id);
+    }
 }
