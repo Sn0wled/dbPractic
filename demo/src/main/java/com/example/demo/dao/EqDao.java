@@ -23,4 +23,7 @@ public class EqDao {
     public void delete(int eqId){
         jdbcTemplate.update("call del_eq(?)", eqId);
     }
+    public Integer create(int typeId, int invNum, String note) {
+        return jdbcTemplate.queryForObject("select add_eq(?, ?, ?)", Integer.class, typeId, invNum, note);
+    }
 }

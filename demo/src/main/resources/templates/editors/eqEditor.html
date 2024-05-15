@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        
+        <link type="text/css" rel="stylesheet" href="../styles/table.css">
+    </head>
+    <body>
+        <div>
+            <h1 id="page-title">Добавление оборудования</h1>
+        </div>
+        <hr>
+        <form id="add-eq-form" method="post">
+            <div id="chars">
+                <div class="type-table-wrapper">
+                    <h3>Тип оборудования</h3>
+                    <table th:replace="~{tables/eqType :: type-table}">
+                    </table>
+                </div>
+                <input hidden id="type-id" name="typeId">
+                <hr>
+                <div class="inv-num-wrapper">
+                    <label>Инвентарный номер</label>
+                    <input id="inv-num" name="invNum">
+                </div>
+                <hr>
+                <div class="note-wrapper">
+                    <h3>Примечание</h3>
+                    <textarea id="note" name="note"></textarea> 
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div class="buttons-wrapper">
+            <button id="save-button" form="add-eq-form">Сохранить</button>
+            <button id="cancel-button">Отменить</button>
+        </div>
+        <script src="../js/eqEditor.js"></script>
+    </body>
+    
+</html>

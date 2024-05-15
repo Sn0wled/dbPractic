@@ -6,6 +6,7 @@ import com.example.demo.models.Class;
 import com.example.demo.models.Eq;
 import com.example.demo.models.Place;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,6 +52,9 @@ public class EqService {
             result.add(eqDto);
         }
         return  result;
+    }
+    public Integer create(int typeId, int invNum, String note) {
+            return eqDao.create(typeId, invNum, note);
     }
 
     public void del(int id){

@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
     </head>
     <body>
         <div class="table">
             <h1>Таблица "Типы оборудований"</h1>
             <div class="table-wrapper">
-                <table>
+                <table  th:fragment="type-table">
                     <thead>
                         <tr>
                             <th>Категория</th>
                             <th>Наименование</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="type-tbody">
+                        <tr th:each="type : ${types}" th:id="${type.id}" th:classappend="${eqId==type.id?'selected':''}">
+                            <td th:text="${type.category}"></td>
+                            <td th:text="${type.name}"></td>
+                            <td hidden th:text="${type.characteristic}"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -21,11 +26,11 @@
                 <h2>Характеристика</h2>
                 <p></p>
             </div>
-            <div class="buttons">
-                <button class="addButton">Добавить</button>
-                <button class="editButton">Редактировать</button>
-                <button class="deleteButton">Удалить</button>
-            </div>
+        </div>
+        <div class="buttons">
+            <button class="addButton">Добавить</button>
+            <button class="editButton">Редактировать</button>
+            <button class="deleteButton">Удалить</button>
         </div>
         <a href="/">Вернуться на главную</a>
     </body>

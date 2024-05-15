@@ -1,35 +1,35 @@
 const eqTBody = document.getElementById('eq-tbody')
 const eqNote = document.getElementById('eq-note')
 const deleteButton = document.getElementById('delete-button')
+const addButton = document.getElementById('add-button')
 
-let selectedEqRow = null
+let selectedEq = null
+init()
 
 deleteButton.onclick = () => {
-    fetch("/eq?eqId="+selectedEqRow.id, {method: 'DELETE'})
+    fetch("/eq?eqId="+selectedEq.id, {method: 'DELETE'})
     .then(r => location.reload())
 }
 
-for (row of eqTBody.children){
-    row.onclick=(e) => onRowClick(e.target.parentElement)
-}
+
 
 function selectEqRow(row){
-    if (selectedEqRow != null) selectedEqRow.classList.remove('selected');
+    if (selectedEq != null) selectedEq.classList.remove('selected');
     if (row != null) row.classList.add('selected');
-    selectedEqRow = row
+    selectedEq = row
     updateNote()
 }
 
 function updateNote(){
-    if (selectedEqRow == null){
+    if (selectedEq == null){
         eqNote.textContent = ""
     } else {
-        eqNote.textContent = selectedEqRow.lastElementChild.textContent
+        eqNote.textContent = selectedEq.lastElementChild.textContent
     }
 }
 
 function checkEqButtons(){
-    if (selectedEqRow == null){
+    if (selectedEq == null){
         deleteButton.disabled = true
     } else {
         deleteButton.disabled = false
@@ -37,6 +37,15 @@ function checkEqButtons(){
 }
 
 function onRowClick(row){
-    if (selectedEqRow == row) selectEqRow(null)
-        else selectEqRow(row)
+    if (selectedEq == row) selectEqRow(null)
+    else selectEqRow(row)
+    checkEqButtons()
+}
+
+function init(){
+    for (let row of eqTBody.children){
+        row.onclick=() => onRowClick(row)
+        if (row.classList.contains('selected')) selectedEq = row;
+    }
+    checkEqButtons()
 }
