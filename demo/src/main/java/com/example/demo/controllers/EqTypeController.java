@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/EqTypes")
+@RequestMapping("/eqTypes")
 public class EqTypeController {
     @Autowired
     EqTypeDao eqTypeDao;
@@ -16,5 +16,11 @@ public class EqTypeController {
     public String getAll(Model model){
         model.addAttribute("eqTypes", eqTypeDao.getAll());
         return "eqTypeRows.html";
+    }
+    @GetMapping()
+    public String get(Model model, Integer typeId){
+        model.addAttribute("types", eqTypeDao.getAll());
+        model.addAttribute("typeId", typeId);
+        return "/tables/eqType.html";
     }
 }

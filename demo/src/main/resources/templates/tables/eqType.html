@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
+        <title>Типы оборудований</title>
+        <link type="text/css" rel="stylesheet" href="../styles/table.css">
     </head>
     <body>
         <div class="table">
@@ -14,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody id="type-tbody">
-                        <tr th:each="type : ${types}" th:id="${type.id}" th:classappend="${eqId==type.id?'selected':''}">
+                        <tr th:each="type : ${types}" th:id="${type.id}" th:classappend="${typeId==type.id?'selected':''}">
                             <td th:text="${type.category}"></td>
                             <td th:text="${type.name}"></td>
                             <td hidden th:text="${type.characteristic}"></td>
@@ -33,5 +35,6 @@
             <button class="deleteButton">Удалить</button>
         </div>
         <a href="/">Вернуться на главную</a>
+    <script src="js/eqType.js"></script>
     </body>
 </html>

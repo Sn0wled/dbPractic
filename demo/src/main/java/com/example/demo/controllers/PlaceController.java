@@ -19,7 +19,7 @@ public class PlaceController {
     @GetMapping("/by-class")
     public String getByClassId(int classId, Model model) {
         model.addAttribute("places", placeDao.getByClassId(classId));
-        return "placeRows.html";
+        return "rows/placeRows.html";
     }
 
     @GetMapping("/opts/by-class")
@@ -39,5 +39,10 @@ public class PlaceController {
     @ResponseBody
     public Place getJsonById(int id){
         return placeDao.getById(id);
+    }
+
+    @GetMapping()
+    public String get(){
+        return "/tables/places.html";
     }
 }

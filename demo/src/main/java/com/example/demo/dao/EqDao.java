@@ -29,4 +29,8 @@ public class EqDao {
     public Eq getById(int id){
         return jdbcTemplate.queryForObject("select * from get_eq_by_id(?)", rowMapper, id);
     }
+
+    public  void update(int id, int typeId, int invNum, String note){
+        jdbcTemplate.update("call update_eq(?, ?, ?, ?)", id, typeId, invNum, note);
+    }
 }

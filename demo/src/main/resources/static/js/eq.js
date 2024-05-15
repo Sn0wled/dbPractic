@@ -2,6 +2,8 @@ const eqTBody = document.getElementById('eq-tbody')
 const eqNote = document.getElementById('eq-note')
 const deleteButton = document.getElementById('delete-button')
 const addButton = document.getElementById('add-button')
+const editButton = document.getElementById('edit-button')
+
 
 let selectedEq = null
 init()
@@ -9,6 +11,10 @@ init()
 deleteButton.onclick = () => {
     fetch("/eq?eqId="+selectedEq.id, {method: 'DELETE'})
     .then(r => location.reload())
+}
+
+editButton.onclick = () => {
+    location.assign('/eq/editor?eqId=' + selectedEq.id)
 }
 
 addButton.onclick = () => {
@@ -34,8 +40,10 @@ function updateNote(){
 function checkEqButtons(){
     if (selectedEq == null){
         deleteButton.disabled = true
+        editButton.disabled = true
     } else {
         deleteButton.disabled = false
+        editButton.disabled = false
     }
 }
 

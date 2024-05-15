@@ -7,7 +7,10 @@ import com.example.demo.models.Eq;
 import com.example.demo.models.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,5 +66,9 @@ public class EqService {
 
     public Eq getById(int id){
         return eqDao.getById(id);
+    }
+
+    public void update(int id, int typeId, int invNum, String note){
+        eqDao.update(id, typeId, invNum, note);
     }
 }

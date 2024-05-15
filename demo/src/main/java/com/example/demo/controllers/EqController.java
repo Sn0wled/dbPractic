@@ -7,10 +7,13 @@ import com.example.demo.models.Eq;
 import com.example.demo.services.ClassService;
 import com.example.demo.services.EqService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -66,8 +69,18 @@ public class EqController {
     }
 
     @PostMapping("/editor")
-    public ModelAndView addEq(ModelMap model, int typeId, int invNum, String note){
-        model.addAttribute("eqId", eqService.create(typeId, invNum, note));
-        return new ModelAndView("redirect:/eq", model);
+    @ResponseBody
+    public int addEq(ModelMap model, int typeId, int invNum, String note){
+        return eqService.create(typeId, invNum, note);
+    }
+
+    @PutMapping("/editor")
+    @ResponseBody
+    public void updateEq(int id, int typeId, int invNum, String note){
+        try {
+            eqService.update(id, typeId, invNum, note);
+        } catch (DataAccessException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+        }
     }
 }
