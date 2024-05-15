@@ -33,4 +33,12 @@ public class EqDao {
     public  void update(int id, int typeId, int invNum, String note){
         jdbcTemplate.update("call update_eq(?, ?, ?, ?)", id, typeId, invNum, note);
     }
+
+    public void install(int eqId, int placeId){
+        jdbcTemplate.update("call install_eq(?, ?)", eqId, placeId);
+    }
+
+    public void uninstall(int eqId){
+        jdbcTemplate.update("call uninstall_eq(?)", eqId);
+    }
 }

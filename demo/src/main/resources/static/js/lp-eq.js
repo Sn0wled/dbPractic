@@ -7,16 +7,32 @@ const installButton = document.getElementById('install-button')
 const uninstallButton = document.getElementById('uninstall-button')
 const changeOkButton = document.getElementById('change-is-ok')
 const toJournalButton = document.getElementById('toJournal')
+const urlParams = new URLSearchParams(document.location.search)
+const classId = urlParams.get('classId')
+const placeId = urlParams.get('placeId')
+const eqId = urlParams.get('eqId')
+
+let loaded = false
 
 
 let selectedEqRow = null
 classSelect.onchange = loadPlaces
 placeSelect.onchange = onPlaceSelect
 toJournalButton.onclick=onClickToJournal
+uninstallButton.onclick = () => {
+    fetch('/eq/uninstall?eqId='+selectedEqRow.id, {method:"PUT"})
+    .then(r => {
+        if (r.ok){
+            location.reload()
+        } else {
+            alert('Произошла ошибка')
+        }
+    })
+}
 
 onPageLoad()
 
-function loadPlaces() {
+async function loadPlaces() {
     if (classSelect.value == "") {
         placeSelect.innerHTML = ""
         return
@@ -24,6 +40,14 @@ function loadPlaces() {
     fetch('/place/opts/by-class?classId='+classSelect.value)
     .then(r => r.text())
     .then(text => placeSelect.innerHTML = text)
+    .then(() => {
+        if (!loaded){
+            for (let op of placeSelect.children){
+                if (op.value = placeId) op.selected = true
+            }
+            if (eqId == null) loaded = true
+        }
+    })
     .then(onPlaceSelect)
 }
 
@@ -54,12 +78,30 @@ function fillPlaceTable(){
             row.onclick = () => {
                 selectEq(row)
             }
+            if (!loaded){
+                if
+            }
         }
     })
 }
 
 function onPageLoad(){
+    if (classId != null) {
+        for (let cl of classSelect.children){
+            if (cl.value == classId) cl.selected = true
+        }
+    }
     loadPlaces()
+    .then(() => {
+        if (placeId != null){
+            for (let place of placeSelect.children) {
+                if (place.value == placeId){
+                    place.selected = true
+                    break
+                }
+            }
+        }
+    })
 }
 
 function onPlaceSelect(){

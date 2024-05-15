@@ -83,4 +83,16 @@ public class EqController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         }
     }
+
+    @PutMapping("/install")
+    @ResponseBody
+    public void installEq(int eqId, int placeId){
+        eqService.install(eqId, placeId);
+    }
+
+    @PutMapping("/uninstall")
+    @ResponseBody
+    public void uninstallEq(int eqId){
+        eqService.uninstall(eqId);
+    }
 }

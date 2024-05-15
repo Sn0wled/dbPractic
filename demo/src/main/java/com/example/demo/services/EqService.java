@@ -71,4 +71,10 @@ public class EqService {
     public void update(int id, int typeId, int invNum, String note){
         eqDao.update(id, typeId, invNum, note);
     }
+    public void install(int eqId, int placeId){
+        eqDao.install(eqId, placeId);
+    }
+    public void uninstall(int eqId){
+        eqDao.uninstall(eqId);
+    }
 }
