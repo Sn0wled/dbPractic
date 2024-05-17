@@ -46,6 +46,7 @@ public class EqController {
     @GetMapping("lp-eq")
     public String getLpEq(Model model){
         model.addAttribute("classes", classService.getAll());
+        model.addAttribute("equipments", eqService.getDtoList(eqService.getNotInstalled()));
         return "tables/lpEquipments.html";
     }
 
@@ -94,5 +95,11 @@ public class EqController {
     @ResponseBody
     public void uninstallEq(int eqId){
         eqService.uninstall(eqId);
+    }
+
+    @GetMapping("/notInstalled")
+    public String notInstalledRows(Model model){
+        model.addAttribute("equipments", eqService.getDtoList(eqService.getNotInstalled()));
+        return "rows/eqRows";
     }
 }

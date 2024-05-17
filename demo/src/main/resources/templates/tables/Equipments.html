@@ -8,14 +8,14 @@
 <body>
 <h1>Оборудование</h1>
     <div>
-        <table id="eq-table">
+        <table id="eq-table" th:fragment="eqTable">
             <thead>
                 <tr>
                     <th>Инвентарный номер</th>
                     <th>Тип оборудования</th>
                     <th>Примечание</th>
                     <th>Исправен</th>
-                    <th>Класс / место</th>
+                    <th th:hidden="${hideClassAndPlace} ?: true">Класс / место</th>
                 </tr>
             </thead>
             <tbody id="eq-tbody" th:insert="~{rows/eqRows}">

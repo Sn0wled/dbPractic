@@ -23,7 +23,7 @@ uninstallButton.onclick = () => {
     fetch('/eq/uninstall?eqId='+selectedEqRow.id, {method:"PUT"})
     .then(r => {
         if (r.ok){
-            location.reload()
+            location.assign('/eq/lp-eq?classId='+classSelect.value+'&placeId='+placeSelect.value)
         } else {
             alert('Произошла ошибка')
         }
@@ -78,9 +78,12 @@ function fillPlaceTable(){
             row.onclick = () => {
                 selectEq(row)
             }
-            if (!loaded){
-                if
+        }
+        if (!loaded){
+            for (let row of placeTBody.children){
+                if (row.id == eqId) selectEq(row)
             }
+            loaded = true
         }
     })
 }

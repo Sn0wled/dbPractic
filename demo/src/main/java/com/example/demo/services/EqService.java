@@ -43,18 +43,7 @@ public class EqService {
 
     public List<EqDto> getByPlaceId(int placeId){
         List<Eq> eqs = eqDao.getByPlaceId(placeId);
-        List<EqDto> result = new ArrayList<>();
-        for (Eq eq : eqs) {
-            EqDto eqDto = new EqDto(eq, eqTypeDao.getById(eq.getTypeId()));
-            try {
-                Place eqPlace = placeDao.getByEqId(eq.getId());
-                Class address = classDao.getById(eqPlace.getClassId());
-                eqDto.setClassAndPlace(String.join(" / ", address.getAddress(), eqPlace.getNum()));
-            }
-            catch (Exception ex){}
-            result.add(eqDto);
-        }
-        return  result;
+        return getDtoList(eqs);
     }
     public Integer create(int typeId, int invNum, String note) {
             return eqDao.create(typeId, invNum, note);
@@ -76,5 +65,22 @@ public class EqService {
     }
     public void uninstall(int eqId){
         eqDao.uninstall(eqId);
+    }
+    public List<Eq> getNotInstalled() {return eqDao.getNotInstalled();}
+    public  List<EqDto> getDtoList(List<Eq> eqList){
+        List<EqDto> result = new ArrayList<>();
+        for (Eq eq : eqList) {
+            EqDto eqDto = new EqDto(eq, eqTypeDao.getById(eq.getTypeId()));
+            try {
+                Place eqPlace = placeDao.getByEqId(eq.getId());
+                Class address = classDao.getById(eqPlace.getClassId());
+                eqDto.setClassAndPlace(String.join(" / ", address.getAddress(), eqPlace.getNum()));
+            }
+            catch (Exception ex){
+                eqDto.setClassAndPlace("");
+            }
+            result.add(eqDto);
+        }
+        return  result;
     }
 }

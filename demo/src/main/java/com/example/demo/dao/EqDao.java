@@ -41,4 +41,7 @@ public class EqDao {
     public void uninstall(int eqId){
         jdbcTemplate.update("call uninstall_eq(?)", eqId);
     }
+    public List<Eq> getNotInstalled(){
+        return jdbcTemplate.query("select * from get_not_installed_eqs()", rowMapper);
+    }
 }

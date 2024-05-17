@@ -47,7 +47,10 @@
             <button disabled id="toJournal">Журнал обслуживания</button>
         </div>
     </div>
+    <div id="uninstalled-eqs" th:insert="~{tables/Equipments::eqTable(eqRows=${notInstalledEqs})}">
+        
+    </div>
     <a href="/">Вернуться на главную</a>
-<script src="../js/lp-eq.js"></script>
+<script src="/js/lp-eq.js"></script>
 </body>
 </html>
