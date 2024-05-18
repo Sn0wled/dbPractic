@@ -65,7 +65,8 @@ public class EqController {
 
     @ResponseBody
     @GetMapping("/by-id")
-    public Eq getById(int id){
+    public Eq getById(Integer id){
+        if (id == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Неверно указан id оборудования");
         return eqService.getById(id);
     }
 

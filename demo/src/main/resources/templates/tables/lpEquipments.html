@@ -39,7 +39,6 @@
     <hr>
     <div class="buttons">
         <div id="control-buttons">
-            <button id="install-button" disabled>Установить</button>
             <button id="uninstall-button" disabled>Снять</button>
             <button id="change-is-ok" disabled>Испр./Неиспр.</button>
         </div>
@@ -47,8 +46,12 @@
             <button disabled id="toJournal">Журнал обслуживания</button>
         </div>
     </div>
-    <div id="uninstalled-eqs" th:insert="~{tables/Equipments::eqTable(eqRows=${notInstalledEqs})}">
-        
+    <div id="uninstalled-eqs" hidden>
+        <h3>Неустановленное оборудование</h3>
+        <table th:replace="~{tables/Equipments::eqTable(eqRows=${notInstalledEqs},id='toInstallTable')}">
+
+        </table>
+        <button id="install-button" disabled>Установить</button>
     </div>
     <a href="/">Вернуться на главную</a>
 <script src="/js/lp-eq.js"></script>

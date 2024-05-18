@@ -2,133 +2,190 @@ const classSelect = document.getElementById('class-select')
 const placeSelect = document.getElementById('place-select')
 const wsNameValue = document.getElementById('ws-name-value')
 const ipValue = document.getElementById('ip-value')
-const placeTBody = document.getElementById('place-tbody')
+const eqTBody = document.getElementById('place-tbody')
 const installButton = document.getElementById('install-button')
 const uninstallButton = document.getElementById('uninstall-button')
 const changeOkButton = document.getElementById('change-is-ok')
 const toJournalButton = document.getElementById('toJournal')
+const uninstalledEqs = document.getElementById('uninstalled-eqs')
+const toInstallTbody = document.querySelector('#toInstallTable tbody')
+
 const urlParams = new URLSearchParams(document.location.search)
-const classId = urlParams.get('classId')
-const placeId = urlParams.get('placeId')
-const eqId = urlParams.get('eqId')
 
-let loaded = false
-
+const searchClassId = urlParams.get('classId')
+const searchPlaceId = searchClassId == null ? null : urlParams.get('placeId')
+const searchEqId = searchPlaceId == null ? null : urlParams.get('eqId')
 
 let selectedEqRow = null
-classSelect.onchange = loadPlaces
-placeSelect.onchange = onPlaceSelect
-toJournalButton.onclick=onClickToJournal
+let selectedEqRowToInstall = null
+
+init()
+
+classSelect.onchange = () =>  {
+    selectEq(null)
+    fillPlaces(classSelect.value)
+    .then(() => {
+        fillPlaceChars(placeSelect.value)
+        if (placeSelect.value != '') uninstalledEqs.hidden = false;
+        else {
+            uninstalledEqs.hidden = true
+            selectEqToInstall(null)
+        }
+        loadEqTable(placeSelect.value)
+        checkPlaceButton()
+    })
+}
+
+placeSelect.onchange = () => {
+    selectEq(null)
+    fillPlaceChars(placeSelect.value)
+    loadEqTable(placeSelect.value)
+    checkPlaceButton()
+}
+
+toJournalButton.onclick = () => {
+    if (classSelect.value == '' || placeSelect.value == '') return
+    location.assign('/serv?classId='+classSelect.value+'&placeId='+placeSelect.value)
+}
+
 uninstallButton.onclick = () => {
-    fetch('/eq/uninstall?eqId='+selectedEqRow.id, {method:"PUT"})
+    const data = new FormData()
+    data.append('eqId', selectedEqRow.id)
+    fetch('/eq/uninstall', {method:'PUT', body:data})
     .then(r => {
         if (r.ok){
+            alert('Оборудование снято')
             location.assign('/eq/lp-eq?classId='+classSelect.value+'&placeId='+placeSelect.value)
         } else {
-            alert('Произошла ошибка')
+            alert('Ошибка')
         }
     })
 }
 
-onPageLoad()
+installButton.onclick = () => {
+    const data = new FormData()
+    data.append('placeId', placeSelect.value)
+    data.append('eqId', selectedEqRowToInstall.id)
+    fetch('/eq/install', {method:'PUT', body:data})
+    .then(r => {
+        if (r.ok){
+            alert('Оборудование установлено')
+            location.assign('/eq/lp-eq?classId='+classSelect.value+'&placeId='+placeSelect.value+'&eqId='+selectedEqRowToInstall.id)
+        } else {
+            alert('Ошибка')
+        }
+    })
+}
 
-async function loadPlaces() {
-    if (classSelect.value == "") {
-        placeSelect.innerHTML = ""
-        return
+function init(){
+    for (let row of toInstallTbody.children){
+        row.onclick = () => {
+            selectEqToInstall(row)
+        }
     }
-    fetch('/place/opts/by-class?classId='+classSelect.value)
-    .then(r => r.text())
-    .then(text => placeSelect.innerHTML = text)
+
+    if (searchClassId != null) selectClass(searchClassId)
+    fillPlaces(classSelect.value)
     .then(() => {
-        if (!loaded){
-            for (let op of placeSelect.children){
-                if (op.value = placeId) op.selected = true
-            }
-            if (eqId == null) loaded = true
+        if (searchPlaceId != null) selectPlace(searchPlaceId)
+        fillPlaceChars(placeSelect.value)
+        if (placeSelect.value != '') {
+            uninstalledEqs.hidden = false
         }
+        loadEqTable(placeSelect.value)
+        .then(() => {
+            if (searchEqId != null) {
+                for (let row of eqTBody.children){
+                    if (row.id == searchEqId){
+                        selectEq(row)
+                        return
+                    }
+                }
+            }
+        })
+        checkPlaceButton()
     })
-    .then(onPlaceSelect)
 }
 
-function fillPlaceChars(){
-    if(placeSelect.value == '') {
+async function fillPlaces(classId){
+    if (classId == '') {
+        placeSelect.innerHTML = ''
+    } else {
+        const resp = await fetch('/place/opts/by-class?classId='+classId)
+        const text = await resp.text()
+        placeSelect.innerHTML = text
+    }
+}
+
+function selectClass(classId) {
+    for (let classOpt of classSelect.children){
+        if (classOpt.value == classId) {
+            classOpt.selected = true
+            return
+        }
+    }
+}
+
+function selectPlace(placeId){
+    for (let placeOpt of placeSelect.children){
+        if (placeOpt.value == placeId){
+            placeOpt.selected = true
+            return
+        }
+    }
+}
+
+function fillPlaceChars(placeId){
+    if(placeId == '') {
         wsNameValue.textContent = ""
         ipValue.textContent = ""
-        return
+    } else {
+        fetch("/place/by-id/json?id="+placeId)
+        .then(r => r.json())
+        .then(json => {
+            wsNameValue.textContent = json.name
+            ipValue.textContent = json.ip
+        })
     }
-    fetch("/place/by-id/json?id="+placeSelect.value)
-    .then(r => r.json())
-    .then(json => {
-        wsNameValue.textContent = json.name
-        ipValue.textContent = json.ip
-    })
 }
 
-function fillPlaceTable(){
-    if (placeSelect.value == '') {
-        placeTBody.innerHTML = ''
-        return
-    }
-    fetch('/eq/byPlace?placeId='+placeSelect.value)
-    .then(r => r.text())
-    .then(text => placeTBody.innerHTML=text)
-    .then(() => {
-        for (let row of placeTBody.children){
+async function loadEqTable(placeId){
+    if (placeId == '') {
+        eqTBody.innerHTML = ''
+    } else {
+        const resp = await fetch('/eq/byPlace?placeId='+placeId)
+        eqTBody.innerHTML= await resp.text()
+        for (let row of eqTBody.children){
             row.onclick = () => {
                 selectEq(row)
             }
         }
-        if (!loaded){
-            for (let row of placeTBody.children){
-                if (row.id == eqId) selectEq(row)
-            }
-            loaded = true
-        }
-    })
-}
-
-function onPageLoad(){
-    if (classId != null) {
-        for (let cl of classSelect.children){
-            if (cl.value == classId) cl.selected = true
-        }
     }
-    loadPlaces()
-    .then(() => {
-        if (placeId != null){
-            for (let place of placeSelect.children) {
-                if (place.value == placeId){
-                    place.selected = true
-                    break
-                }
-            }
-        }
-    })
-}
-
-function onPlaceSelect(){
-    fillPlaceChars()
-    fillPlaceTable()
-    selectEq(null)
-    checkPlaceButton()
 }
 
 function selectEq(row){ // row может быть null
     if (selectedEqRow === row){
-        if (selectedEqRow == null) return
-        selectedEqRow.classList.remove('selected')
-        selectedEqRow = null
+        if (selectedEqRow == null);
+        else {
+            selectedEqRow.classList.remove('selected')
+            selectedEqRow = null
+        }
     } else {
         if (selectedEqRow != null) selectedEqRow.classList.remove('selected')
         selectedEqRow = row
         if (row != null) row.classList.add('selected')
     }
-    onEqSelect()
+    checkEqButtons()
 }
 
-function onEqSelect(){
-    checkEqButtons()
+//
+
+function checkPlaceButton(){
+    if (placeSelect.value == "") {
+        toJournalButton.disabled = true
+    } else {
+        toJournalButton.disabled = false
+    }
 }
 
 function checkEqButtons(){
@@ -141,15 +198,25 @@ function checkEqButtons(){
     }
 }
 
-function checkPlaceButton(){
-    if (placeSelect.value == "") {
-        toJournalButton.disabled = true
+function selectEqToInstall(row){
+    if (selectedEqRowToInstall === row){
+        if (selectedEqRowToInstall == null);
+        else {
+            selectedEqRowToInstall.classList.remove('selected')
+            selectedEqRowToInstall = null
+        }
     } else {
-        toJournalButton.disabled = false
+        if (selectedEqRowToInstall != null) selectedEqRowToInstall.classList.remove('selected')
+            selectedEqRowToInstall = row
+        if (row != null) row.classList.add('selected')
     }
+    checkEqToInstallButton()
 }
 
-function onClickToJournal(){
-    if (classSelect.value == '' || placeSelect.value == '') return
-    document.location.href = '/serv?classId='+classSelect.value+'&placeId='+placeSelect.value
+function checkEqToInstallButton(){
+    if (selectedEqRowToInstall == null) {
+        installButton.disabled = true
+    } else {
+        installButton.disabled = false
+    }
 }

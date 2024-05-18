@@ -8,7 +8,7 @@
 <body>
 <h1>Оборудование</h1>
     <div>
-        <table id="eq-table" th:fragment="eqTable">
+        <table th:id="${id}?:eq-table" th:fragment="eqTable">
             <thead>
                 <tr>
                     <th>Инвентарный номер</th>
