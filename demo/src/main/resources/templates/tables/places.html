@@ -10,7 +10,7 @@
             <h1>Учебные места</h1>
             <div class="class-selector">
                 <span>Класс</span>
-                <select>
+                <select th:insert="/opts/classOpts">
                 </select>
             </div>
             <hr/>
@@ -23,13 +23,20 @@
                         <th hidden>Примечание</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="place-tbody">
                 </tbody>
             </table>
             <hr/>
-            <p class="note">
-                Примечание
-            </p>
+            <div>
+                <h3>Примечание</h3>
+                <p id="place-note"></p>
+            </div>
+            <hr>
+            <div class="buttons">
+                <button id="add-button" disabled>Добавить место</button>
+                <button id="edit-button" disabled>Изменить место</button>
+                <button id="del-button" disabled>Удалить место</button>
+            </div>
             <hr/>
             <h2>Оборудование</h2>
             <hr/>
@@ -43,15 +50,10 @@
                         <th hidden>Примечание</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="eq-tbody">
                 </tbody>
             </table>
             <hr/>
-        </div>
-        <div class="buttons">
-            <button class="addButton">Добавить место</button>
-            <button class="editButton">Изменить место</button>
-            <button class="delButton">Удалить место</button>
         </div>
         <hr/>
         <a href="/">Вернуться на главную</a>

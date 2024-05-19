@@ -8,8 +8,7 @@
 <body>
     <h1>Оборудование учебного места</h1>
     <div class="selector">
-        <select id="class-select">
-            <option th:each="class : ${classes}" th:text="${class.address}" th:value="${class.id}"></option>
+        <select id="class-select" th:insert="~{/opts/classOpts}">
         </select>
         <select id="place-select">
 

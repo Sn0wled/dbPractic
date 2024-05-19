@@ -12,6 +12,18 @@ cafSelect.onchange = () => {
     checkCafButtons()
 }
 
+addButton.onclick = () => {
+    location.assign('/classes/editor?cafId='+cafSelect.value)
+}
+
+editButton.onclick = () => {
+    location.assign('/classes/editor?classId='+selectedClass.id+'&cafId='+cafSelect.value)
+}
+
+toPlacesButton.onclick = () => {
+    location.assign('/place?classId='+selectedClass.id)
+}
+
 
 function loadTable(){
     if (cafSelect.value != ''){
@@ -52,17 +64,17 @@ function selectClassRow(row){
 function checkCafButtons(){
     if (cafSelect.value == ""){
         addButton.disabled = true
-        editButton.disabled = true
     } else {
         addButton.disabled = false
-        editButton.disabled = false
     }
 }
 
 function checkClassButtons(){
     if (selectedClass == null){
         toPlacesButton.disabled = true
+        editButton.disabled = true
     } else {
         toPlacesButton.disabled = false
+        editButton.disabled = false
     }
 }

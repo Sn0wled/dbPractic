@@ -17,7 +17,7 @@ public class ClassDao {
     }
 
     public List<Class> getByCafId(int cafId){
-        return jdbcTemplate.query("select * from get_classes_by_caf_id(?)", rowMapper, cafId);
+        return jdbcTemplate.query("select * from get_class_with_address_by_caf_id(?)", rowMapper, cafId);
     }
 
     public List<Integer> getCafs(){
@@ -25,9 +25,17 @@ public class ClassDao {
     }
 
     public List<Class> getAll(){
-        return jdbcTemplate.query("select * from get_all_classes()", rowMapper);
+        return jdbcTemplate.query("select * from get_all_classes_with_address()", rowMapper);
     }
     public Class getById(int id){
-        return  jdbcTemplate.queryForObject("select * from get_class_by_id(?)", rowMapper, id);
+        return  jdbcTemplate.queryForObject("select * from get_class_with_address_by_id(?)", rowMapper, id);
+    }
+
+    public void update(int id, int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber){
+        jdbcTemplate.update("call update_class(?, ?, ?, ?, ?, ?, ?, ?, ?)", id, cafId, maxPlaces, note, pref, street, house, place, phoneNumber);
+    }
+
+    public Integer create(int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber) {
+        return jdbcTemplate.queryForObject("select * from  add_class(?, ?, ?, ?, ?, ?, ?, ?)", Integer.class, cafId, maxPlaces, note, pref, street, house, place, phoneNumber);
     }
 }

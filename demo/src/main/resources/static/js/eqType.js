@@ -21,9 +21,25 @@ if (typeId != null){
     }
 }
 
+addButton.onclick = () => {
+    location.assign('/eqTypes/editor')
+}
+
+editButton.onclick = () => {
+    location.assign('/eqTypes/editor?typeId='+lastSelected.id)
+}
+
 checkButtons()
 
-delButton.onclick = delSelected
+delButton.onclick = async () => {
+    const resp = await fetch('/eqTypes?eqTypeId='+lastSelected.id, {method:'DELETE'})
+    if (resp.ok) {
+        alert('Тип удален')
+        location.reload()
+    } else {
+        alert('Ошибка\n'+(await resp.json()).message)
+    }
+}
 
 
 function selectPlaceRow(row){
@@ -49,10 +65,6 @@ function updateText(){
     } else {
         characteristic.textContent = ""
     }
-}
-
-function delSelected(){
-    location.reload()
 }
 
 function checkButtons(){

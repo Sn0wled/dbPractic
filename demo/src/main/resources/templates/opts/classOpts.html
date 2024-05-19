@@ -1,2 +1,2 @@
-<option th:each="class: ${classes}" th:text="${class.address}" th:value="${class.id}">
+<option th:each="class: ${classes}" th:text="${class.pref +' '+class.street+' дом '+class.house+' помещение '+class.place}" th:value="${class.id}">
 </option>

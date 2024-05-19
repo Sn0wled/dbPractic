@@ -25,4 +25,16 @@ public class PlaceDao {
     public Place getById(int id){
         return jdbcTemplate.queryForObject("select * from get_learn_place_by_id(?)", rowMapper, id);
     }
+
+    public void del(int placeId){
+        jdbcTemplate.update("call del_learn_place(?)", placeId);
+    }
+
+    public void update(int id, int classId, String placeNum, String placeName, String placeIP, String placeNote){
+        jdbcTemplate.update("call update_learn_place(?, ?, ?, ?, ?, ?)", id, classId, placeNum, placeName, placeIP, placeNote);
+    }
+
+    public void create(int classId, String placeNum, String placeName, String placeIP, String placeNote){
+        jdbcTemplate.update("call add_learn_place(?, ?, ?, ?, ?)", classId, placeNum, placeName, placeIP, placeNote);
+    }
 }

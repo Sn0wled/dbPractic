@@ -20,4 +20,16 @@ public class EqTypeDao {
     public EqType getById(int id){
         return jdbcTemplate.queryForObject("select * from get_eq_type_by_id(?)", rowMapper, id);
     }
+
+    public void delete(int id){
+        jdbcTemplate.update("call del_eq_type(?)", id);
+    }
+
+    public void update(int id, String category, String name, String characteristic){
+        jdbcTemplate.update("call update_eq_type(?,?,?,?)", id, category, name, characteristic);
+    }
+
+    public Integer create(String category, String name, String characteristic){
+        return jdbcTemplate.queryForObject("select add_eq_type(?,?,?)", Integer.class, category, name, characteristic);
+    }
 }

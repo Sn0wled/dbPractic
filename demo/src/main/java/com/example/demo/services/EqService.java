@@ -27,18 +27,7 @@ public class EqService {
     ClassDao classDao;
     public List<EqDto> getAll(){
         List<Eq> allEq =eqDao.getAll();
-        List<EqDto> result = new ArrayList<>();
-        for (Eq eq : allEq) {
-            EqDto eqDto = new EqDto(eq, eqTypeDao.getById(eq.getTypeId()));
-            try {
-                Place eqPlace = placeDao.getByEqId(eq.getId());
-                Class address = classDao.getById(eqPlace.getClassId());
-                eqDto.setClassAndPlace(String.join(" / ", address.getAddress(), eqPlace.getNum()));
-            }
-            catch (Exception ex){}
-            result.add(eqDto);
-        }
-        return result;
+        return getDtoList(allEq);
     }
 
     public List<EqDto> getByPlaceId(int placeId){
@@ -73,8 +62,8 @@ public class EqService {
             EqDto eqDto = new EqDto(eq, eqTypeDao.getById(eq.getTypeId()));
             try {
                 Place eqPlace = placeDao.getByEqId(eq.getId());
-                Class address = classDao.getById(eqPlace.getClassId());
-                eqDto.setClassAndPlace(String.join(" / ", address.getAddress(), eqPlace.getNum()));
+                Class clas = classDao.getById(eqPlace.getClassId());
+                eqDto.setClassAndPlace(String.format("%s %s дом %s помещение %s / %s", clas.getPref(), clas.getStreet(), clas.getHouse(), clas.getPlace(), eqPlace.getNum()));
             }
             catch (Exception ex){
                 eqDto.setClassAndPlace("");

@@ -1,5 +1,5 @@
 <tr th:each="class:${classes}" th:id="${class.id}">
-    <td th:text="${class.address}" ></td>
+    <td th:text="${class.pref +' '+class.street+' дом '+class.house+' помещение '+class.place}"></td>
     <td th:text="${class.phoneNumber}" ></td>
     <td th:text="${class.maxPlaces}" ></td>
     <td th:text="${class.curPlaces}" ></td>

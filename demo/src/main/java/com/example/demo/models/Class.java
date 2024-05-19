@@ -6,9 +6,12 @@ import lombok.Data;
 public class Class {
     int id;
     int maxPlaces;
-    int respId;
-    String note;
+    int cafId;
+    String note = "";
     int curPlaces;
-    String address;
+    String pref;
+    String street;
+    String house;
+    String place;
     String phoneNumber;
 }
