@@ -1,0 +1,26 @@
+.fields {
+    padding: 10px;
+}
+
+.field {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.field h3 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.field label {
+    margin-right: 15px;
+}
+
+.field textarea {
+    width: 500px;
+    height: 100px;
+    resize: none;
+    overflow-y: auto;
+}

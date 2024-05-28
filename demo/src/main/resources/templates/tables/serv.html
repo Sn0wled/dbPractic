@@ -2,17 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Журнал технического обслуживания</title>
     <link rel="stylesheet" href="../styles/table.css">
+    <link type="text/css" rel="stylesheet" href="../styles/selector.css">
+    <link type="text/css" rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-    <div class="selector">
-        <select id="class-select"  th:insert="~{/opts/classOpts}">
-        </select>
-        <select id="place-select"></select>
+    <h1>Журнал технического обслуживания</h1>
+    <div class="selectors">
+        <div class="selector">
+            <label>Класс</label>
+            <select id="class-select"  th:insert="~{/opts/classOpts}"></select>
+        </div>
+        <div class="selector">
+            <label>Учебное место</label>
+            <select id="place-select"></select>
+        </div>
     </div>
     <hr>
-    <div id="serv-table-wrapper">
+    <div class="table-wrapper wrapper">
         <table id="serv-table">
             <thead>
                 <tr>
@@ -26,7 +34,9 @@
             </thead>
             <tbody id="serv-table-tbody"></tbody>
         </table>
-        <div>
+    </div>
+    <div class="note">
+        <div class="note-content">
             <h3>Примечание</h3>
             <p id="serv-note"></p>
         </div>

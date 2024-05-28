@@ -44,4 +44,8 @@ public class EqDao {
     public List<Eq> getNotInstalled(){
         return jdbcTemplate.query("select * from get_not_installed_eqs()", rowMapper);
     }
+
+    public void changeOk(int eqId) {
+        jdbcTemplate.update("call change_ok(?)", eqId);
+    }
 }

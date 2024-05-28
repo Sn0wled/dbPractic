@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <link type="text/css" rel="stylesheet" href="../styles/main.css">
+        <link type="text/css" rel="stylesheet" href="../styles/table.css"></head>
+        <link type="text/css" rel="stylesheet" href="../styles/editor.css">
     <body>
         <h1 id="page-title">Добавление типа оборудования</h1>
-        <hr>
-        <form id="eq-type-form">
-            <div class="category-select">
-                <label>Категория</label>
-                <select id="category-select" name="category" required>
-                    <option>монитор</option>
-                    <option>принтер</option>
-                    <option>системный блок</option>
-                    <option>материнская плата</option>
-                    <option>процессор</option>
-                    <option>сетевая карта</option>
-                    <option>модуль памяти</option>
-                    <option>ЖМД</option>
-                    <option>привод CD</option>
-                    <option>привод DVD</option>
-                    <option>видеокарта</option>
-                    <option>ГМД</option>
-                    <option>прочее</option>    
-                </select>
-            </div>
-            <div class="type-name">
-                <label>Наименование</label>
-                <input id="type-name" name="name" required>
-            </div>
-            <div class="type-characteristic">
-                <h3>Характеристика</h3>
-                <textarea id="type-characteristic" name="characteristic"></textarea>
-            </div>
-        </form>
-        <hr/>
+        <div class="fields">
+            <form id="eq-type-form">
+                <div class="category-select field">
+                    <label>Категория</label>
+                    <select id="category-select" name="category" required>
+                        <option>монитор</option>
+                        <option>принтер</option>
+                        <option>системный блок</option>
+                        <option>материнская плата</option>
+                        <option>процессор</option>
+                        <option>сетевая карта</option>
+                        <option>модуль памяти</option>
+                        <option>ЖМД</option>
+                        <option>привод CD</option>
+                        <option>привод DVD</option>
+                        <option>видеокарта</option>
+                        <option>ГМД</option>
+                        <option>прочее</option>    
+                    </select>
+                </div>
+                <div class="type-name field">
+                    <label>Наименование</label>
+                    <input id="type-name" name="name" required>
+                </div>
+                <div class="type-characteristic field">
+                    <h3>Характеристика</h3>
+                    <textarea id="type-characteristic" name="characteristic"></textarea>
+                </div>
+            </form>
+        </div>
         <div class="buttons">
             <button id="save-button" form="eq-type-form">Сохранить</button>
             <button id="cancel-button">Отмена</button>

@@ -72,4 +72,7 @@ public class EqService {
         }
         return  result;
     }
+    public void changeOk(int eqId) {
+        eqDao.changeOk(eqId);
+    }
 }

@@ -38,4 +38,8 @@ public class ClassDao {
     public Integer create(int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber) {
         return jdbcTemplate.queryForObject("select * from  add_class(?, ?, ?, ?, ?, ?, ?, ?)", Integer.class, cafId, maxPlaces, note, pref, street, house, place, phoneNumber);
     }
+
+    public List<Class> getClassesWithPlaces() {
+        return jdbcTemplate.query("select * from get_classes_with_places()", rowMapper);
+    }
 }

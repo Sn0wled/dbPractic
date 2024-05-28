@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <link type="text/css" rel="stylesheet" href="../styles/main.css">
+        <link type="text/css" rel="stylesheet" href="../styles/table.css">
+        <link type="text/css" rel="stylesheet" href="../styles/editor.css">
+    </head>
     <body>
         <h1 id="page-title">Добавление класса</h1>
-        <form id="class-form">
-            <h2>Класс</h2>
-            <div class="resp-caf-id-input">
-                <label>Id ответственной кафедры</label>
-                <input id="resp-caf-id-input" name="cafId" required>
-            </div>
-            <div class="max-places-input">
-                <label>Макс. количество мест</label>
-                <input id="max-places-input" name="maxPlaces" required>
-            </div>
-            <div class="note-input">
-                <label>Примечание</label>
-                <textarea id="note-input" name="note"></textarea>
-            </div>
-            <h2>Адрес</h2>
-            <div class="pref-select">
-                <label>Префикс улицы</label>
-                <select id="pref-select" name="pref" required>
-                    <option>улица</option>
-                    <option>проспект</option>
-                    <option>переулок</option>
-                </select>
-            </div>
-            <div class="street-input">
-                <label>Улица</label>
-                <input id="street-input" name="street" required>
-            </div>
-            <div class="house-input">
-                <label>Дом</label>
-                <input id="house-input" name="house" required>
-            </div>
-            <div class="place-input">
-                <label>Помещение</label>
-                <input id="place-input" name="place" required>
-            </div>
-            <div class="phone-number-input">
-                <label>Номер телефона</label>
-                <input id="phone-number-input" name="phoneNumber">
-            </div>
-        </form>
+        <div class="fields">
+            <form id="class-form">
+                <h2>Класс</h2>
+                <div class="resp-caf-id-input field">
+                    <label>Id ответственной кафедры</label>
+                    <input id="resp-caf-id-input" name="cafId" required>
+                </div>
+                <div class="max-places-input field">
+                    <label>Макс. количество мест</label>
+                    <input id="max-places-input" name="maxPlaces" required>
+                </div>
+                <div class="note-input field">
+                    <h3>Примечание</h3>
+                    <textarea id="note-input" name="note"></textarea>
+                </div>
+                <h2>Адрес</h2>
+                <div class="pref-select field">
+                    <label>Префикс улицы</label>
+                    <select id="pref-select" name="pref" required>
+                        <option>улица</option>
+                        <option>проспект</option>
+                        <option>переулок</option>
+                    </select>
+                </div>
+                <div class="street-input field">
+                    <label>Улица</label>
+                    <input id="street-input" name="street" required>
+                </div>
+                <div class="house-input field">
+                    <label>Дом</label>
+                    <input id="house-input" name="house" required>
+                </div>
+                <div class="place-input field">
+                    <label>Помещение</label>
+                    <input id="place-input" name="place" required>
+                </div>
+                <div class="phone-number-input field">
+                    <label>Номер телефона</label>
+                    <input id="phone-number-input" name="phoneNumber">
+                </div>
+            </form>
+        </div>
+        
         <div class="buttons">
             <button id="save-button" form="class-form">Сохранить</button>
             <button id="cancel-button">Отмена</button>

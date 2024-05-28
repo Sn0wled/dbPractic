@@ -4,53 +4,65 @@
     <meta charset="UTF-8">
     <title>Оборудование учебного места</title>
     <link type="text/css" rel="stylesheet" href="../styles/table.css">
+    <link type="text/css" rel="stylesheet" href="../styles/selector.css">
+    <link type="text/css" rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
     <h1>Оборудование учебного места</h1>
-    <div class="selector">
-        <select id="class-select" th:insert="~{/opts/classOpts}">
-        </select>
-        <select id="place-select">
-
-        </select>
-        <hr>
-        <div class="ws-name">
+        
+    <div class="selectors">
+        <div class="selector">
+            <label>Класс</label>
+            <select id="class-select"  th:insert="~{/opts/classOpts}"></select>
+        </div>
+        <div class="selector">
+            <label>Учебное место</label>
+            <select id="place-select"></select>
+        </div>
+    </div>
+    <div class="place-info">
+        <div class="ws-name info">
             <span>Имя рабочей станции: </span>
             <span id="ws-name-value" ></span>
         </div>
-        <div class="ip">
+        <div class="ip info">
             <span>IP-адрес: </span>
             <span id="ip-value"></span>
         </div>
     </div>
+    <div class="table-wrapper wrapper">
+        <table id="eq-table">
+            <thead>
+                <tr>
+                    <td>Инв. №</td>
+                    <td>Тип</td>
+                    <td>Характеристика</td>
+                    <td>Испр.?</td>
+                </tr>
+            </thead>
+            <tbody id="place-tbody"></tbody>
+        </table>
+    </div>
     <hr>
-    <table id="eq-table">
-        <thead>
-            <tr>
-                <td>Инв. №</td>
-                <td>Тип</td>
-                <td>Характеристика</td>
-                <td>Испр.?</td>
-            </tr>
-        </thead>
-        <tbody id="place-tbody"></tbody>
-    </table>
-    <hr>
-    <div class="buttons">
-        <div id="control-buttons">
+    <div class="buttons-wrapper wrapper">
+        <div class="buttons">
             <button id="uninstall-button" disabled>Снять</button>
             <button id="change-is-ok" disabled>Испр./Неиспр.</button>
-        </div>
-        <div id="nav-buttons">
             <button disabled id="toJournal">Журнал обслуживания</button>
         </div>
     </div>
     <div id="uninstalled-eqs" hidden>
         <h3>Неустановленное оборудование</h3>
-        <table th:replace="~{tables/Equipments::eqTable(eqRows=${notInstalledEqs},id='toInstallTable')}">
-
-        </table>
-        <button id="install-button" disabled>Установить</button>
+        <div class="table-wrapper wrapper">
+            <table th:replace="~{tables/Equipments::eqTable(eqRows=${notInstalledEqs},id='toInstallTable')}">
+    
+            </table>
+        </div>
+        <div class="buttons-wrapper wrapper">
+            <div class="buttons">
+                <button id="install-button" disabled>Установить</button>
+            </div>
+        </div>
     </div>
     <a href="/">Вернуться на главную</a>
 <script src="/js/lp-eq.js"></script>

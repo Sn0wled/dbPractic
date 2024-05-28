@@ -1,62 +1,68 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Учебные места</title>
-        <link rel="stylesheet" href="../styles/table.css">
-    </head>
-    <body>
-        <div>
-            <h1>Учебные места</h1>
-            <div class="class-selector">
-                <span>Класс</span>
-                <select th:insert="/opts/classOpts">
-                </select>
-            </div>
-            <hr/>
-            <table class="place-table table">
-                <thead>
-                    <tr>
-                        <th>№ места</th>
-                        <th>Имя станции</th>
-                        <th>IP-адрес</th>
-                        <th hidden>Примечание</th>
-                    </tr>
-                </thead>
-                <tbody id="place-tbody">
-                </tbody>
-            </table>
-            <hr/>
-            <div>
-                <h3>Примечание</h3>
-                <p id="place-note"></p>
-            </div>
-            <hr>
-            <div class="buttons">
-                <button id="add-button" disabled>Добавить место</button>
-                <button id="edit-button" disabled>Изменить место</button>
-                <button id="del-button" disabled>Удалить место</button>
-            </div>
-            <hr/>
-            <h2>Оборудование</h2>
-            <hr/>
-            <table class="eq-table table">
-                <thead>
-                    <tr>
-                        <th>Инв. номер</th>
-                        <th>Тип</th>
-                        <th>Характеристика</th>
-                        <th>Испр.</th>
-                        <th hidden>Примечание</th>
-                    </tr>
-                </thead>
-                <tbody id="eq-tbody">
-                </tbody>
-            </table>
-            <hr/>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Учебные места</title>
+    <link type="text/css" rel="stylesheet" href="../styles/table.css">
+    <link type="text/css" rel="stylesheet" href="../styles/selector.css">
+    <link type="text/css" rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+    <h1>Учебные места</h1>
+    <div class="selectors">
+        <div class="selector">
+            <label>Класс</label>
+            <select id="class-select" th:insert="~{/opts/classOpts}"></select>
         </div>
-        <hr/>
-        <a href="/">Вернуться на главную</a>
-        <script src="js/places.js"></script>
-    </body>
+    </div>
+    <div class="table-wrapper wrapper">
+        <table class="place-table table">
+            <thead>
+                <tr>
+                    <th>№ места</th>
+                    <th>Имя станции</th>
+                    <th>IP-адрес</th>
+                    <th hidden>Примечание</th>
+                </tr>
+            </thead>
+            <tbody id="place-tbody">
+            </tbody>
+        </table>
+    </div>
+    <div class="note">
+        <div class="note-content">
+            <h3>Примечание</h3>
+            <p id="place-note"></p>
+        </div>
+    </div>
+    <div class="buttons-wrapper wrapper">
+        <div class="buttons">
+            <button id="add-button" disabled>Добавить место</button>
+            <button id="edit-button" disabled>Изменить место</button>
+            <button id="del-button" disabled>Удалить место</button>
+        </div>
+    </div>
+    <h2>Оборудование</h2>
+    <div class="table-wrapper wrapper">
+        <table class="eq-table table">
+            <thead>
+                <tr>
+                    <th>Инв. номер</th>
+                    <th>Тип</th>
+                    <th>Характеристика</th>
+                    <th>Испр.</th>
+                    <th hidden>Примечание</th>
+                </tr>
+            </thead>
+            <tbody id="eq-tbody">
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <a href="/">Вернуться на главную</a>
+    <script src="js/places.js"></script>
+</body>
+
 </html>

@@ -1,0 +1,47 @@
+.selectors {
+    border: 1px solid black;
+    background-color: grey;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.selector {
+    border: 1px solid black;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.selector:last-child {
+    margin: 0;
+}
+
+.selector label {
+    display: inline-block;
+    width: 110px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.selector select {
+    width: 400px;
+    border-radius: 0;
+}
+
+.place-info {
+    border: 1px solid black;
+    background-color: grey;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.place-info .info {
+    border: 1px solid black;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.place-info .info:last-child {
+    margin: 0;
+}

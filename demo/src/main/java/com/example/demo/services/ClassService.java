@@ -22,4 +22,9 @@ public class ClassService {
     public Class getById(int id){
         return classDao.getById(id);
     }
+
+
+    public List<Class> getClassesWithPlaces(){
+        return classDao.getClassesWithPlaces();
+    }
 }

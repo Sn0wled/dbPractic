@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Оборудование</title>
     <link rel="stylesheet" href="../styles/table.css">
+    <link type="text/css" rel="stylesheet" href="../styles/selector.css">
+    <link type="text/css" rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-<h1>Оборудование</h1>
-    <div>
+    <h1>Оборудование</h1>
+    <div class="table-wrapper wrapper">
         <table th:id="${id}?:eq-table" th:fragment="eqTable">
             <thead>
                 <tr>
@@ -21,9 +23,14 @@
             <tbody id="eq-tbody" th:insert="~{rows/eqRows}">
             </tbody>
         </table>
-        <div class="note">
+    </div>
+    <div class="note">
+        <div class="note-content">
+            <h3>Примечание</h3>
             <p id="eq-note"></p>
         </div>
+    </div>
+    <div class="buttons-wrapper wrapper">
         <div class="buttons">
             <button id="delete-button" disabled>Снять с учета</button>
             <button id="edit-button" disabled>Изменить</button>

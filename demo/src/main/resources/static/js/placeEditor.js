@@ -34,6 +34,7 @@ async function init(){
     if (placeId != null){
         const resp = await fetch('/place/by-id/json?id='+placeId)
         if (resp.ok){
+            pageTitle.textContent = 'Редактирование учебного места'
             const place = await resp.json()
             selectClass(place.classId)
             setPlaceNum(place.num)

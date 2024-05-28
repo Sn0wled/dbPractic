@@ -4,33 +4,42 @@
         <meta charset="UTF-8">
         <title>Классы</title>
         <link type="text/css" rel="stylesheet" href="../styles/table.css">
+        <link type="text/css" rel="stylesheet" href="../styles/selector.css">
+        <link type="text/css" rel="stylesheet" href="../styles/main.css">
     </head>
     <body>
-        <div class="seletor">
-            <label>Отв. кафедра</label>
-            <select id="caf-select" th:insert="~{opts/cafsOpts.html}"></select>
+        <h1>Классы</h1>
+        <div class="selectors">
+            <div class="selector">
+                <label>Отв. кафедра</label>
+                <select id="caf-select" th:insert="~{opts/cafsOpts.html}"></select>
+            </div>
         </div>
-        <hr/>
-        <table>
-            <thead>
-                <tr>
-                    <th>Адрес</th>
-                    <th>Телефон</th>
-                    <th>Макс. мест</th>
-                    <th>Факт. мест</th>
-                </tr>
-            </thead>
-            <tbody id="class-table"></tbody>
-        </table>
-        <hr/>
-        <h3>Примечание</h3>
-        <p id="class-note">
-        </p>
-        <hr/>
-        <div class="buttons">
-            <button id="add-button">Добавить</button>
-            <button id="edit-button">Изменить</button>
-            <button id="to-places-button">Места</button>
+        <div class="table-wrapper wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Адрес</th>
+                        <th>Телефон</th>
+                        <th>Макс. мест</th>
+                        <th>Факт. мест</th>
+                    </tr>
+                </thead>
+                <tbody id="class-table"></tbody>
+            </table>
+        </div>
+        <div class="note">
+            <div class="note-content">
+                <h3>Примечание</h3>
+                <p id="class-note"></p>
+            </div>
+        </div>
+        <div class="buttons-wrapper wrapper">
+            <div class="buttons">
+                <button id="add-button">Добавить</button>
+                <button id="edit-button">Изменить</button>
+                <button id="to-places-button">Места</button>
+            </div>
         </div>
         <hr/>
         <a href="/">Вернуться на главную</a>

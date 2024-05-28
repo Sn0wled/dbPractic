@@ -1,8 +1,8 @@
-const tbody = document.querySelector('.table tbody')
-const characteristic = document.querySelector('.text p')
-const delButton = document.querySelector('.deleteButton')
-const addButton = document.querySelector('.addButton')
-const editButton = document.querySelector('.editButton')
+const tbody = document.getElementById('type-tbody')
+const characteristic = document.getElementById('note')
+const delButton = document.getElementById('deleteButton')
+const addButton = document.getElementById('addButton')
+const editButton = document.getElementById('editButton')
 const urlParams = new URLSearchParams(document.location.search)
 const typeId = urlParams.get('typeId')
 
@@ -37,7 +37,7 @@ delButton.onclick = async () => {
         alert('Тип удален')
         location.reload()
     } else {
-        alert('Ошибка\n'+(await resp.json()).message)
+        alert('Ошибка\n Сперва снимите данное оборудование с учебного места')
     }
 }
 

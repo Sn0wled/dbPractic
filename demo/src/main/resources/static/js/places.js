@@ -1,4 +1,4 @@
-const classSelect = document.querySelector(".class-selector select")
+const classSelect = document.getElementById('class-select')
 const placeTableTBody = document.getElementById('place-tbody')
 const eqTableTBody = document.getElementById('eq-tbody')
 const placeNote = document.getElementById('place-note')

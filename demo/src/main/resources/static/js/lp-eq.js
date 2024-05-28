@@ -21,6 +21,26 @@ let selectedEqRowToInstall = null
 
 init()
 
+changeOkButton.onclick = async () => {
+    if (selectedEqRow == null) {
+        alert('Не выбрано оборудование')
+    } else {
+        const resp = await fetch('/eq/changeOk?eqId='+selectedEqRow.id,
+            {method:'PUT'}
+        )
+        if (resp.ok) {
+            alert('Изменено')
+            let url = '/eq/lp-eq'
+            url += '?classId='+classSelect.value
+            url += '&placeId='+placeSelect.value
+            url += '&eqId='+selectedEqRow.id
+            location.assign(url)
+        } else {
+            alert('Ошибка')
+        }
+    }
+}
+
 classSelect.onchange = () =>  {
     selectEq(null)
     fillPlaces(classSelect.value)
