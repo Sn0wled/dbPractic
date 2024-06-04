@@ -32,11 +32,13 @@ public class ClassDao {
     }
 
     public void update(int id, int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber){
-        jdbcTemplate.update("call update_class(?, ?, ?, ?, ?, ?, ?, ?, ?)", id, cafId, maxPlaces, note, pref, street, house, place, phoneNumber);
+        if (phoneNumber.isEmpty()) phoneNumber = null;
+        jdbcTemplate.update("call update_class(?, ?, ?, ?, ?, ?, ?, ?, ?)", id, maxPlaces, cafId, note, pref, street, house, place, phoneNumber);
     }
 
     public Integer create(int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber) {
-        return jdbcTemplate.queryForObject("select * from  add_class(?, ?, ?, ?, ?, ?, ?, ?)", Integer.class, cafId, maxPlaces, note, pref, street, house, place, phoneNumber);
+        if (phoneNumber.isEmpty()) phoneNumber = null;
+        return jdbcTemplate.queryForObject("select * from  add_class(?, ?, ?, ?, ?, ?, ?, ?)", Integer.class, maxPlaces, cafId, note, pref, street, house, place, phoneNumber);
     }
 
     public List<Class> getClassesWithPlaces() {
