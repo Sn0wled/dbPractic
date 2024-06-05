@@ -32,12 +32,12 @@ public class ClassDao {
     }
 
     public void update(int id, int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber){
-        if (phoneNumber.isEmpty()) phoneNumber = null;
+
         jdbcTemplate.update("call update_class(?, ?, ?, ?, ?, ?, ?, ?, ?)", id, maxPlaces, cafId, note, pref, street, house, place, phoneNumber);
     }
 
     public Integer create(int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber) {
-        if (phoneNumber.isEmpty()) phoneNumber = null;
+
         return jdbcTemplate.queryForObject("select * from  add_class(?, ?, ?, ?, ?, ?, ?, ?)", Integer.class, maxPlaces, cafId, note, pref, street, house, place, phoneNumber);
     }
 

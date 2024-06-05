@@ -51,12 +51,11 @@ async function init(){
             const clas = await resp.json()
             cafIdInput.value = clas.cafId
             maxPlacesInput.value = clas.maxPlaces
-            noteInput.value = clas.note ? '' : clas.note
+            noteInput.value = clas.note
             setPref(clas.pref)
             streetInput.value = clas.street
             houseInput.value = clas.house
             placeInput.value = clas.place
-            phoneNumInput.value = clas.phoneNumber ? '' : clas.phoneNumber
 
             classForm.onsubmit = async (e) => {
                 e.preventDefault()

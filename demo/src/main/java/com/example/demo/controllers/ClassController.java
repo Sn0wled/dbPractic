@@ -66,6 +66,8 @@ public class ClassController {
     @PutMapping("/editor")
     @ResponseBody
     public void update(int id, int cafId, int maxPlaces, String note, String pref, String street, String house, String place, String phoneNumber){
+        if (note.isEmpty()) note = null;
+        if (phoneNumber.isEmpty()) phoneNumber = null;
         classDao.update(id, cafId, maxPlaces, note, pref, street, house, place, phoneNumber);
     }
 
